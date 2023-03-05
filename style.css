@@ -57,3 +57,20 @@
 img {
   padding-bottom: 10px;
 }
+
+.units {
+  display: inline-block;
+  vertical-align: text-top;
+  font-size: 14px;
+  padding-top: 10px;
+}
+
+.units .active {
+  color: rgb(33, 33, 33);
+  cursor: default;
+  text-decoration: none;
+}
+
+.units .active:hover {
+  text-decoration: none;
+}

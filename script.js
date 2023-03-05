@@ -19,9 +19,9 @@ navigator.geolocation.getCurrentPosition(findCity);
 
 function showForecast(response) {
   console.log(response);
+
   let tempValue = document.querySelector("#temperature");
-  let tempRounded = Math.round(`${response.data.daily[0].temperature.day}`);
-  tempValue.innerHTML = `${tempRounded}`;
+  tempValue.innerHTML = Math.round(`${response.data.daily[0].temperature.day}`);
 
   let weatherValue = document.querySelector("#weatherName");
   weatherValue.innerHTML = `${response.data.daily[0].condition.description}`;
@@ -37,6 +37,8 @@ function showForecast(response) {
     "src",
     `${response.data.daily[0].condition.icon_url}`
   );
+
+  celciusTemp = response.data.daily[0].temperature.day;
 }
 
 function displayCity(event) {
@@ -74,3 +76,30 @@ changeCity.addEventListener("submit", displayCity);
 
 let changeCurrentPlace = document.querySelector("button");
 changeCurrentPlace.addEventListener("click", findLocation);
+
+//Change units function
+
+function changeUnitsToFahr(event) {
+  event.preventDefault();
+  let tempValue = document.querySelector("#temperature");
+  changeToFahr.classList.add("active");
+  changeToCelcius.classList.remove("active");
+  let fahrTemp = (celciusTemp * 9) / 5 + 32;
+  tempValue.innerHTML = Math.round(`${fahrTemp}`);
+}
+
+function changeUnitsToCelcius(event) {
+  event.preventDefault();
+  let tempValue = document.querySelector("#temperature");
+  changeToFahr.classList.remove("active");
+  changeToCelcius.classList.add("active");
+  tempValue.innerHTML = Math.round(celciusTemp);
+}
+
+let changeToFahr = document.querySelector("#fahr");
+changeToFahr.addEventListener("click", changeUnitsToFahr);
+
+let changeToCelcius = document.querySelector("#celcius");
+changeToCelcius.addEventListener("click", changeUnitsToCelcius);
+
+let celciusTemp = null;
