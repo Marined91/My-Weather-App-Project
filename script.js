@@ -19,7 +19,7 @@ if (hour < 10) {
   hour = `0${hour}`;
 }
 
-currentTime.innerHTML = `${day}, ${hour}:${minutes}`;
+currentTime.innerHTML = ` ${day}, ${hour}:${minutes}`;
 
 navigator.geolocation.getCurrentPosition(findCity);
 
