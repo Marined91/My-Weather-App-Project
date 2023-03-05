@@ -18,6 +18,7 @@ currentTime.innerHTML = `${day}, ${hour}:${minutes}`;
 navigator.geolocation.getCurrentPosition(findCity);
 
 function showForecast(response) {
+  console.log(response);
   let tempValue = document.querySelector("#temperature");
   let tempRounded = Math.round(`${response.data.daily[0].temperature.day}`);
   tempValue.innerHTML = `${tempRounded}`;
@@ -30,6 +31,12 @@ function showForecast(response) {
 
   let windValue = document.querySelector("#speed");
   windValue.innerHTML = `${response.data.daily[0].wind.speed}`;
+
+  let weatherIcon = document.querySelector("#icon");
+  weatherIcon.setAttribute(
+    "src",
+    `${response.data.daily[0].condition.icon_url}`
+  );
 }
 
 function displayCity(event) {
