@@ -11,22 +11,47 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div>
-      <h1>You're here 🧭</h1>
-      <p>Forecast icon</p>
-      <p>Date & Time</p>
-      <p>Forecast * °C|°F</p>
-      <p>Humidity : * %</p>
-      <p>Wind speed : * km/h</p>
-      <p>Not actually there ?</p>
-      <form>
-        <input type="text" placeholder="Enter city name here" />
-        <input type="submit" value="Go" />
-      </form>
-      <button>Or click here for current location</button>
+    <div class="container text-center">
+      <div class="card m-4">
+        <div class="card-body">
+          <h1 id="cityName">You're here 🧭</h1>
+          <p id="currentTime"></p>
+          <h2 class="weather">
+            <span id="weatherName">Today's weather</span>
+            <span id="temperature">*</span>
+            <span class="units">°C</span>
+          </h2>
+          <h3 id="forecast">
+            Humidity : <span id="humidity">*</span> % &emsp; Wind :
+            <span id="speed">*</span> km/hour
+          </h3>
+          <br />
+          <p class="place">Not actually there ?</p>
+          <div>
+            <form class="form otherLocation">
+              <input
+                type="text"
+                placeholder="Enter city name here"
+                id="cityInput"
+              />
+              <input type="submit" value="Go" />
+            </form>
+            <button class="button otherLocation">
+              Or click here for current location
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>
