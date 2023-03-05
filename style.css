@@ -1,6 +1,7 @@
 #cityName {
   font-family: "Pacifico", cursive;
   font-size: 3.5rem;
+  text-transform: capitalize;
 }
 
 .weather {

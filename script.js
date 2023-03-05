@@ -39,6 +39,9 @@ function showForecast(response) {
   );
 
   celciusTemp = response.data.daily[0].temperature.day;
+
+  changeToFahr.classList.remove("active");
+  changeToCelcius.classList.add("active");
 }
 
 function displayCity(event) {
