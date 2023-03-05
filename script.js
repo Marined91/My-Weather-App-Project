@@ -12,13 +12,16 @@ let weekdays = [
 let day = weekdays[now.getDay()];
 let hour = now.getHours();
 let minutes = now.getMinutes();
+if (minutes < 10) {
+  minutes = `0${minutes}`;
+}
+if (hour < 10) {
+  hour = `0${hour}`;
+}
 
 currentTime.innerHTML = `${day}, ${hour}:${minutes}`;
 
 navigator.geolocation.getCurrentPosition(findCity);
-
-// Homework week 5
-// Info found on slack : we will learn how to adapt the date and time to the local one of the city searched
 
 function showForecast(response) {
   console.log(response);
