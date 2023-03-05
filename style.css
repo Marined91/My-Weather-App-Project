@@ -12,6 +12,10 @@
   margin-bottom: 0;
 }
 
+.weather::first-letter {
+  text-transform: capitalize;
+}
+
 .forecast {
   font-family: "Poppins", sans-serif;
   font-size: 15px;

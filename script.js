@@ -12,32 +12,24 @@ let weekdays = [
 let day = weekdays[now.getDay()];
 let hour = now.getHours();
 let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-if (hour < 10) {
-  hour = `0${hour}`;
-}
 
-currentTime.innerHTML = ` ${day}, ${hour}:${minutes}`;
+currentTime.innerHTML = `${day}, ${hour}:${minutes}`;
 
 navigator.geolocation.getCurrentPosition(findCity);
 
 function showForecast(response) {
-  console.log(response);
-
   let tempValue = document.querySelector("#temperature");
-  let tempRounded = Math.round(`${response.data.main.temp}`);
+  let tempRounded = Math.round(`${response.data.daily[0].temperature.day}`);
   tempValue.innerHTML = `${tempRounded}`;
 
   let weatherValue = document.querySelector("#weatherName");
-  weatherValue.innerHTML = `${response.data.weather[0].main}`;
+  weatherValue.innerHTML = `${response.data.daily[0].condition.description}`;
 
   let humidityValue = document.querySelector("#humidity");
-  humidityValue.innerHTML = `${response.data.main.humidity}`;
+  humidityValue.innerHTML = `${response.data.daily[0].temperature.humidity}`;
 
   let windValue = document.querySelector("#speed");
-  windValue.innerHTML = `${response.data.wind.speed}`;
+  windValue.innerHTML = `${response.data.daily[0].wind.speed}`;
 }
 
 function displayCity(event) {
@@ -45,26 +37,25 @@ function displayCity(event) {
   let cityName = document.querySelector("#cityName");
   let citySearch = document.querySelector("#cityInput");
   cityName.innerHTML = `${citySearch.value}`;
-  let apiKey = "2980ff43226d67e53abfcdb6d457dcc8";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch.value}&units=metric`;
-
-  axios.get(`${apiUrl}&appid=${apiKey}`).then(showForecast);
+  let apiKey = "61to45a09fcda0fa1383b34254a00c2c";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${citySearch.value}&key=${apiKey}`;
+  axios.get(`${apiUrl}`).then(showForecast);
 }
 
 function displayCity2(response) {
   let cityName = document.querySelector("#cityName");
-  cityName.innerHTML = `${response.data.name}`;
+  cityName.innerHTML = `${response.data.city}`;
 }
 
 function findCity(position) {
-  let apiKey = "2980ff43226d67e53abfcdb6d457dcc8";
+  let apiKey = "61to45a09fcda0fa1383b34254a00c2c";
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
   console.log(latitude);
   console.log(longitude);
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric`;
-  axios.get(`${url}&appid=${apiKey}`).then(displayCity2);
-  axios.get(`${url}&appid=${apiKey}`).then(showForecast);
+  let url = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=${apiKey}`;
+  axios.get(`${url}`).then(displayCity2);
+  axios.get(`${url}`).then(showForecast);
 }
 
 function findLocation() {
