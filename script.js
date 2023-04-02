@@ -44,6 +44,31 @@ function showForecast(response) {
   changeToCelcius.classList.add("active");
 }
 
+//Inject forecast div in java
+function displayForecast() {
+  let forecastElement = document.querySelector("#weatherForecast");
+  let forecastHTML = `"<div class="row">`;
+  let days = ["tom", "tom+1", "tom+2"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+              <div class="col-2">
+                <div class="forecast-date">${day}</div>
+                <div class="forecast-icon">icon</div>
+                <div class="forecast-temp">
+                  <span class="forecast-temp-low">_ °</span>
+                  <span class="forecast-temp-up">_ °</span>
+                </div>
+              </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function displayCity(event) {
   event.preventDefault();
   let cityName = document.querySelector("#cityName");
@@ -106,3 +131,5 @@ let changeToCelcius = document.querySelector("#celcius");
 changeToCelcius.addEventListener("click", changeUnitsToCelcius);
 
 let celciusTemp = null;
+
+displayForecast();
