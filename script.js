@@ -75,10 +75,10 @@ function displayForecast(response) {
                 }" width="40" 
             /></div>
                 <div class="forecast-temp">
-                  <span class="forecast-temp-low">${Math.round(
+                  <span class="forecast-temp-low" id="forecast-min">${Math.round(
                     weatherForecastDay.temperature.minimum
                   )}° </span>
-                  <span class="forecast-temp-up">${Math.round(
+                  <span class="forecast-temp-up" id="forecast-max">${Math.round(
                     weatherForecastDay.temperature.minimum
                   )}°</span>
                 </div>
@@ -129,30 +129,3 @@ changeCity.addEventListener("submit", displayCity);
 
 let changeCurrentPlace = document.querySelector("button");
 changeCurrentPlace.addEventListener("click", findLocation);
-
-//Change units function
-
-function changeUnitsToFahr(event) {
-  event.preventDefault();
-  let tempValue = document.querySelector("#temperature");
-  changeToFahr.classList.add("active");
-  changeToCelcius.classList.remove("active");
-  let fahrTemp = (celciusTemp * 9) / 5 + 32;
-  tempValue.innerHTML = Math.round(`${fahrTemp}`);
-}
-
-function changeUnitsToCelcius(event) {
-  event.preventDefault();
-  let tempValue = document.querySelector("#temperature");
-  changeToFahr.classList.remove("active");
-  changeToCelcius.classList.add("active");
-  tempValue.innerHTML = Math.round(celciusTemp);
-}
-
-let changeToFahr = document.querySelector("#fahr");
-changeToFahr.addEventListener("click", changeUnitsToFahr);
-
-let changeToCelcius = document.querySelector("#celcius");
-changeToCelcius.addEventListener("click", changeUnitsToCelcius);
-
-let celciusTemp = null;

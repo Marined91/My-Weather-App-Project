@@ -68,16 +68,6 @@ img {
   padding-top: 10px;
 }
 
-.units .active {
-  color: black;
-  cursor: default;
-  text-decoration: none;
-}
-
-.units .active:hover {
-  text-decoration: none;
-}
-
 .nextWeek {
   font-family: "Poppins", sans-serif;
   font-size: 10px;
