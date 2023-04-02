@@ -75,3 +75,16 @@ img {
 .units .active:hover {
   text-decoration: none;
 }
+
+.nextWeek {
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #669bbc;
+  margin-top: 25px;
+  text-align: center;
+}
+
+.forecast-date {
+  font-weight: bold;
+}
