@@ -55,11 +55,11 @@ function displayForecast() {
       `
               <div class="col-2">
                 <div class="forecast-date">${day}</div>
-                <div class="forecast-icon"><img id="icon" src="src/boussole2.png" width="50" height="50"
+                <div class="forecast-icon"><img id="icon" src="src/boussole2.png" width="50" 
             /></div>
                 <div class="forecast-temp">
-                  <span class="forecast-temp-low">_ °</span>
-                  <span class="forecast-temp-up">_ °</span>
+                  <span class="forecast-temp-low">1° </span>
+                  <span class="forecast-temp-up"> 10°</span>
                 </div>
               </div>
   `;
@@ -68,6 +68,14 @@ function displayForecast() {
   forecastHTML = forecastHTML + `</div>`;
 
   forecastElement.innerHTML = forecastHTML;
+}
+
+//get forecast data's
+function getForecast() {
+  let citySearch = document.querySelector("#cityInput");
+  let apiKey = "61to45a09fcda0fa1383b34254a00c2c";
+  let apiURL = `https://api.shecodes.io/weather/v1/forecast?query=${citySearch.value}&key=${apiKey}&units=metric`;
+  //console.log(apiURL);
 }
 
 function displayCity(event) {
