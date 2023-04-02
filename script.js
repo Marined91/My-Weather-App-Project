@@ -44,6 +44,14 @@ function showForecast(response) {
   changeToCelcius.classList.add("active");
 }
 
+//Format date info in forecast
+function formatDate(time) {
+  let date = new Date(time * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
 //Inject forecast div in java
 function displayForecast(response) {
   console.log(response.data.daily);
@@ -53,20 +61,30 @@ function displayForecast(response) {
 
   let forecastHTML = `"<div class="row justify-content-md-center">`;
 
-  weatherForecast.forEach(function (weatherForecastDay) {
-    forecastHTML =
-      forecastHTML +
-      `
+  weatherForecast.forEach(function (weatherForecastDay, index) {
+    if (index >= 1) {
+      forecastHTML =
+        forecastHTML +
+        `
               <div class="col-2">
-                <div class="forecast-date">${weatherForecastDay.time}</div>
-                <div class="forecast-icon"><img id="icon" src="${weatherForecastDay.condition.icon_url}" width="40" 
+                <div class="forecast-date">${formatDate(
+                  weatherForecastDay.time
+                )}</div>
+                <div class="forecast-icon"><img id="icon" src="${
+                  weatherForecastDay.condition.icon_url
+                }" width="40" 
             /></div>
                 <div class="forecast-temp">
-                  <span class="forecast-temp-low">${weatherForecastDay.temperature.minimum}° </span>
-                  <span class="forecast-temp-up">${weatherForecastDay.temperature.minimum}°</span>
+                  <span class="forecast-temp-low">${Math.round(
+                    weatherForecastDay.temperature.minimum
+                  )}° </span>
+                  <span class="forecast-temp-up">${Math.round(
+                    weatherForecastDay.temperature.minimum
+                  )}°</span>
                 </div>
               </div>
   `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
