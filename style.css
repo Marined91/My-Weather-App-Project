@@ -87,14 +87,15 @@ img {
   text-align: center;
 }
 
-.nextWeek .forecast {
-  font-size: 12px;
-}
-
 .forecast-date {
   font-weight: bold;
 }
 
 .forecast-temp-up {
   font-weight: bold;
+}
+
+html body {
+  background-color: #8ec5fc;
+  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
 }
