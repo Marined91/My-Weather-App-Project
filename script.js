@@ -45,7 +45,8 @@ function showForecast(response) {
 }
 
 //Inject forecast div in java
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#weatherForecast");
   let forecastHTML = `"<div class="row">`;
   let days = ["tom", "tom+1", "tom+2"];
@@ -68,14 +69,6 @@ function displayForecast() {
   forecastHTML = forecastHTML + `</div>`;
 
   forecastElement.innerHTML = forecastHTML;
-}
-
-//get forecast data's
-function getForecast() {
-  let citySearch = document.querySelector("#cityInput");
-  let apiKey = "61to45a09fcda0fa1383b34254a00c2c";
-  let apiURL = `https://api.shecodes.io/weather/v1/forecast?query=${citySearch.value}&key=${apiKey}&units=metric`;
-  //console.log(apiURL);
 }
 
 function displayCity(event) {
@@ -102,6 +95,7 @@ function findCity(position) {
   let url = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=${apiKey}`;
   axios.get(`${url}`).then(displayCity2);
   axios.get(`${url}`).then(showForecast);
+  axios.get(`${url}`).then(displayForecast);
 }
 
 function findLocation() {
@@ -140,5 +134,3 @@ let changeToCelcius = document.querySelector("#celcius");
 changeToCelcius.addEventListener("click", changeUnitsToCelcius);
 
 let celciusTemp = null;
-
-displayForecast();
