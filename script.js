@@ -55,7 +55,8 @@ function displayForecast() {
       `
               <div class="col-2">
                 <div class="forecast-date">${day}</div>
-                <div class="forecast-icon">icon</div>
+                <div class="forecast-icon"><img id="icon" src="src/boussole2.png" width="50" height="50"
+            /></div>
                 <div class="forecast-temp">
                   <span class="forecast-temp-low">_ °</span>
                   <span class="forecast-temp-up">_ °</span>
